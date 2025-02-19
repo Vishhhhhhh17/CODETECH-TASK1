@@ -1,0 +1,147 @@
+def simple_chatbot(user_input, conversation_state):
+    # Convert the input to lowercase to make the chatbot case-insensitive
+    user_input = user_input.lower()
+
+    # Predefined rules for the chatbot
+    if conversation_state == "ask_name":
+        return f"Nice to meet you, {user_input}! What's your favorite hobby?", "ask_hobby"
+    
+    elif conversation_state == "ask_hobby":
+        return f"{user_input.capitalize()} sounds fun! Do you have a favorite {user_input} activity?", "ask_favorite_activity"
+    
+    elif conversation_state == "ask_favorite_activity":
+        return f"That's awesome! I bet {user_input} is really enjoyable. What's your favorite type of music?", "ask_music"
+    
+    elif conversation_state == "ask_music":
+        return f"{user_input.capitalize()} is a great choice! Do you listen to music while doing your hobbies?", "ask_music_while_hobby"
+    
+    elif conversation_state == "ask_music_while_hobby":
+        if "yas" in user_input:
+            return "That's cool! Music makes everything better. Do you like to travel?", "ask_travel"
+        elif "no" in user_input:
+            return "Ah, I see. Sometimes silence is golden too! Do you like to travel?", "ask_travel"
+        else:
+            return "I didn't catch that. Do you listen to music while doing your hobbies?", "ask_music_while_hobby"
+    
+    elif conversation_state == "ask_travel":
+        if "yas" in user_input:
+            return "Traveling is so exciting! What's the most beautiful place you've ever visited?", "ask_favorite_place"
+        elif "no" in user_input:
+            return "That's okay, there's plenty to explore at home too! Do you like to cook?", "ask_cooking"
+        else:
+            return "I didn't catch that. Do you like to travel?", "ask_travel"
+    
+    elif conversation_state == "ask_favorite_place":
+        return f"{user_input.capitalize()} sounds breathtaking! I'd love to visit someday. Do you like to cook?", "ask_cooking"
+    
+    elif conversation_state == "ask_cooking":
+        if "yas" in user_input:
+            return "Cooking is such a useful skill! What's your favorite dish to make?", "ask_favorite_dish"
+        elif "no" in user_input:
+            return "That's okay, ordering food is fun too! Do you like to watch movies?", "ask_movies"
+        else:
+            return "I didn't catch that. Do you like to cook?", "ask_cooking"
+    
+    elif conversation_state == "ask_favorite_dish":
+        return f"{user_input.capitalize()} sounds delicious! I wish I could try it. Do you like to watch movies?", "ask_movies"
+    
+    elif conversation_state == "ask_movies":
+        if "yas" in user_input:
+            return "Movies are great! What's your favorite genre?", "ask_favorite_genre"
+        elif "no" in user_input:
+            return "That's okay, there are plenty of other ways to relax. Do you like to read?", "ask_reading"
+        else:
+            return "I didn't catch that. Do you like to watch movies?", "ask_movies"
+    
+    elif conversation_state == "ask_favorite_genre":
+        return f"{user_input.capitalize()} is a fantastic choice! Do you have a favorite movie?", "ask_favorite_movie"
+    
+    elif conversation_state == "ask_favorite_movie":
+        return f"{user_input.capitalize()} is a classic! I'll have to watch it sometime. Do you like to play sports?", "ask_sports"
+    
+    elif conversation_state == "ask_sports":
+        if "yas" in user_input:
+            return "Sports are so much fun! What's your favorite sport to play or watch?", "ask_favorite_sport"
+        elif "no" in user_input:
+            return "That's okay, sports aren't for everyone. Do you like to go for walks?", "ask_walks"
+        else:
+            return "I didn't catch that. Do you like to play sports?", "ask_sports"
+    
+    elif conversation_state == "ask_favorite_sport":
+        return f"{user_input.capitalize()} is exciting! Do you play it often?", "ask_play_often"
+    
+    elif conversation_state == "ask_play_often":
+        if "yas" in user_input:
+            return "That's awesome! Practice makes perfect. Do you like to cook?", "ask_cooking"
+        elif "no" in user_input:
+            return "That's okay, it's still fun to watch! Do you like to cook?", "ask_cooking"
+        else:
+            return "I didn't catch that. Do you play it often?", "ask_play_often"
+    
+    elif conversation_state == "ask_walks":
+        if "yas" in user_input:
+            return "Walks are so refreshing! Do you like to listen to music while walking?", "ask_music_while_walking"
+        elif "no" in user_input:
+            return "That's okay, there are plenty of other ways to relax. Do you like to cook?", "ask_cooking"
+        else:
+            return "I didn't catch that. Do you like to go for walks?", "ask_walks"
+    
+    elif conversation_state == "ask_music_while_walking":
+        if "yas" in user_input:
+            return "That's awesome! Music makes walks even better. Do you like to cook?", "ask_cooking"
+        elif "no" in user_input:
+            return "Ah, I see. Sometimes silence is golden too! Do you like to cook?", "ask_cooking"
+        else:
+            return "I didn't catch that. Do you listen to music while walking?", "ask_music_while_walking"
+    
+    elif conversation_state == "ask_reading":
+        if "yas" in user_input:
+            return "Reading is wonderful! What's your favorite book?", "ask_favorite_book"
+        elif "no" in user_input:
+            return "That's okay, there are plenty of other ways to relax. Do you like to cook?", "ask_cooking"
+        else:
+            return "I didn't catch that. Do you like to read?", "ask_reading"
+    
+    elif conversation_state == "ask_favorite_book":
+        return f"{user_input.capitalize()} is a great book! I'll have to read it sometime. Do you like to cook?", "ask_cooking"
+    
+    elif "hello" in user_input or "hi" in user_input:
+        return "Hello! What's your name?", "ask_name"
+    
+    elif "how are you" in user_input:
+        return "I'm just a bot, but I'm functioning perfectly! How about you?", "general"
+    
+    elif "weather" in user_input:
+        return "I'm not connected to the internet, but I hope the weather is nice wherever you are!", "general"
+    
+    elif "bye" in user_input or "goodbye" in user_input:
+        return "Goodbye! Have a great day!", "end_conversation"
+    
+    elif "your name" in user_input:
+        return "I'm just a simple chatbot. You can call me ChatBot!", "general"
+    
+    elif "help" in user_input:
+        return "I can help you with greetings, hobbies, and having a conversation. Just ask!", "general"
+    
+    else:
+        return "I'm sorry, I didn't understand that. Can you please rephrase or ask something else?", "general"
+
+# Main loop to interact with the chatbot
+if __name__ == "__main__":
+    print("Welcome to the Simple Chatbot! Type 'bye' to exit.")
+    conversation_state = "start"  # Initial state
+    
+    while True:
+        if conversation_state == "start":
+            user_input = input("ChatBot: Hello! What's your name?\nYou: ")
+            response, conversation_state = simple_chatbot(user_input, "ask_name")
+            print(f"ChatBot: {response}")
+        elif conversation_state == "end_conversation":
+            print("ChatBot: It was nice talking to you! Goodbye!")
+            break
+        else:
+            user_input = input("You: ")
+            response, conversation_state = simple_chatbot(user_input, conversation_state)
+            print(f"ChatBot: {response}")
+            if conversation_state == "end_conversation":
+                break
